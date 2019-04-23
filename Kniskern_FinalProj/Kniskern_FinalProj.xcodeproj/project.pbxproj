@@ -14,6 +14,14 @@
 		3F5F022D226924FB0020396A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F5F022C226924FB0020396A /* Assets.xcassets */; };
 		3F5F0230226924FB0020396A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F5F022E226924FB0020396A /* LaunchScreen.storyboard */; };
 		3F5F023B226924FB0020396A /* Kniskern_FinalProjUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5F023A226924FB0020396A /* Kniskern_FinalProjUITests.swift */; };
+		3F971C58226E7AE800AF0E74 /* ARSceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F971C57226E7AE800AF0E74 /* ARSceneManager.swift */; };
+		3F971C59226E7AE800AF0E74 /* ARSceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F971C57226E7AE800AF0E74 /* ARSceneManager.swift */; };
+		3F971C5B226E7FAB00AF0E74 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F971C5A226E7FAB00AF0E74 /* Plane.swift */; };
+		3F971C5C226E7FAB00AF0E74 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F971C5A226E7FAB00AF0E74 /* Plane.swift */; };
+		3F971C5E226EA20400AF0E74 /* myArtVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F971C5D226EA20400AF0E74 /* myArtVC.swift */; };
+		3F971C5F226EA20400AF0E74 /* myArtVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F971C5D226EA20400AF0E74 /* myArtVC.swift */; };
+		3F971C64226EA25B00AF0E74 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F971C63226EA25B00AF0E74 /* Image.swift */; };
+		3F971C65226EA25B00AF0E74 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F971C63226EA25B00AF0E74 /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +46,10 @@
 		3F5F0236226924FB0020396A /* Kniskern_FinalProjUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Kniskern_FinalProjUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F5F023A226924FB0020396A /* Kniskern_FinalProjUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kniskern_FinalProjUITests.swift; sourceTree = "<group>"; };
 		3F5F023C226924FB0020396A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F971C57226E7AE800AF0E74 /* ARSceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSceneManager.swift; sourceTree = "<group>"; };
+		3F971C5A226E7FAB00AF0E74 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		3F971C5D226EA20400AF0E74 /* myArtVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myArtVC.swift; sourceTree = "<group>"; };
+		3F971C63226EA25B00AF0E74 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,21 +116,25 @@
 		3F5F02452269261B0020396A /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				3F971C63226EA25B00AF0E74 /* Image.swift */,
 			);
-			path = Data;
+			name = Data;
 			sourceTree = "<group>";
 		};
 		3F5F0246226926210020396A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3F971C57226E7AE800AF0E74 /* ARSceneManager.swift */,
+				3F971C5A226E7FAB00AF0E74 /* Plane.swift */,
 			);
-			path = Model;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		3F5F02472269262B0020396A /* VC */ = {
 			isa = PBXGroup;
 			children = (
 				3F5F0227226924FA0020396A /* ViewController.swift */,
+				3F971C5D226EA20400AF0E74 /* myArtVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -225,8 +241,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F971C58226E7AE800AF0E74 /* ARSceneManager.swift in Sources */,
+				3F971C64226EA25B00AF0E74 /* Image.swift in Sources */,
 				3F5F0228226924FA0020396A /* ViewController.swift in Sources */,
+				3F971C5B226E7FAB00AF0E74 /* Plane.swift in Sources */,
 				3F5F0224226924FA0020396A /* AppDelegate.swift in Sources */,
+				3F971C5E226EA20400AF0E74 /* myArtVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +255,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F5F023B226924FB0020396A /* Kniskern_FinalProjUITests.swift in Sources */,
+				3F971C5C226E7FAB00AF0E74 /* Plane.swift in Sources */,
+				3F971C5F226EA20400AF0E74 /* myArtVC.swift in Sources */,
+				3F971C59226E7AE800AF0E74 /* ARSceneManager.swift in Sources */,
+				3F971C65226EA25B00AF0E74 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,13 @@ import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
+    
+    //https://stackoverflow.com/questions/45026702/when-new-view-appears-on-scene-view-app-is-freezed
+    
+    
     @IBOutlet var sceneView: ARSCNView!
+    let sceneManager = ARSceneManager()
+    var yourArt: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,29 +27,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         
         // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+        //sceneView.showsStatistics = true
         
-        //visualize how plane detection works
-        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
+        sceneManager.attach(to: sceneView)
+        sceneManager.displayDebugInfo()
         
-        // Create a new scene
-        // not used? //let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        //sceneView.scene = scene
+        //handle taps
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapScene(_:)))
+            view.addGestureRecognizer(tapGesture)
+
+        yourArt = myArt.shared.myImage
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Create a session configuration
-        let configuration = ARWorldTrackingConfiguration()
-        
-        //vertical plane detection enabling
-        configuration.planeDetection = .horizontal
-
-        // Run the view's session
-        sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,33 +49,50 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
+    
+    
+    //tap action
+    @objc func didTapScene(_ gesture: UITapGestureRecognizer) {
+        switch gesture.state {
+        case .ended:
+            let location = gesture.location(ofTouch: 0, in: sceneView)
+        
+            let hit = sceneView.hitTest(location, types: .existingPlaneUsingGeometry)
+            
+            if let hit = hit.first {
+                placeBlockOnPlaneAt(hit)
+            }
+        default:
+            break
+        }
+    }
+    
+    //place an object
+    func placeBlockOnPlaneAt(_ hit: ARHitTestResult) {
+        let box = createBox()
+        //position(node: box, atHit: hit)
+        box.position = SCNVector3Make(hit.worldTransform.columns.3.x, hit.worldTransform.columns.3.y, hit.worldTransform.columns.3.z)
+        sceneView?.scene.rootNode.addChildNode(box)
+    }
+    
+    private func createBox() -> SCNNode {
+        let box = SCNBox(width: 0.15, height: 0.20, length: 0.02, chamferRadius: 0.02)
+        let material = SCNMaterial()
+        material.diffuse.contents = yourArt
+        box.materials = [material]
+        
+        let boxNode = SCNNode(geometry: box)
+        
+        return boxNode
+    }
+    
+    private func position(node: SCNNode, atHit hit: ARHitTestResult) {
+        //node.transform = SCNMatrix4(hit.anchor!.transform)
+        node.eulerAngles = SCNVector3Make(node.eulerAngles.x + Float.pi / 2, node.eulerAngles.y, node.eulerAngles.z)
+        //let position = SCNVector3Make(hit.worldTransform.columns.3.x + node.geometry!.boundingBox.min.z, hit.worldTransform.columns.3.y, hit.worldTransform.columns.3.z)
+        let position = SCNVector3Make(hit.worldTransform.columns.3.x, hit.worldTransform.columns.3.y, hit.worldTransform.columns.3.z)
+    }
 
-    // MARK: - Render Planes
-    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        if let planeAnchor = anchor as? ARPlaneAnchor {
-            let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z)); plane.firstMaterial?.diffuse.contents = UIColor(white:1, alpha: 0.75)
-            
-            let planeNode = SCNNode(geometry: plane)
-            
-            planeNode.position = SCNVector3Make(planeAnchor.center.x, planeAnchor.center.x, planeAnchor.center.z)
-            planeNode.eulerAngles.x = -.pi/2
-            
-            node.addChildNode(planeNode)
-        }
-    }
-    
-    //get planes to update
-    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        if let planeAnchor = anchor as? ARPlaneAnchor,
-        let planeNode = node.childNodes.first,
-            let plane = planeNode.geometry as? SCNPlane {
-            plane.width = CGFloat(planeAnchor.extent.x)
-            plane.height = CGFloat(planeAnchor.extent.z)
-            planeNode.position = SCNVector3Make(planeAnchor.center.x, 0 , planeAnchor.center.z)
-        }
-    }
-    
-    
     
     // MARK: - ARSCNViewDelegate
     
