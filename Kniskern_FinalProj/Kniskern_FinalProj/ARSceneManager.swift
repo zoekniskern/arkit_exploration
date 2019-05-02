@@ -26,6 +26,10 @@ class ARSceneManager: NSObject {
         sceneView?.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
     }
     
+    func resetScene(){
+        configureSceneView(self.sceneView!)
+    }
+    
     private func configureSceneView(_ sceneView: ARSCNView) {
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
@@ -35,7 +39,7 @@ class ARSceneManager: NSObject {
         configuration.isLightEstimationEnabled = true
         
         // Run the view's session
-        sceneView.session.run(configuration)
+        sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
 }
