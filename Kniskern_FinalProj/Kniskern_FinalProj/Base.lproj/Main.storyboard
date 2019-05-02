@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--AR-->
+        <!--AR Preview-->
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="Kniskern_FinalProj" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,7 +31,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fQZ-KI-GVf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="AR" id="zWu-sT-WLT"/>
+                    <tabBarItem key="tabBarItem" title="AR Preview" id="zWu-sT-WLT"/>
                     <connections>
                         <outlet property="sceneView" destination="BrB-h1-WRS" id="5nT-qQ-ynl"/>
                     </connections>
@@ -87,7 +87,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ws3-28-6qe"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="slO-tM-yY3"/>
+                    <tabBarItem key="tabBarItem" title="Draw" id="slO-tM-yY3"/>
                     <connections>
                         <outlet property="customView" destination="VMy-Gx-BLu" id="5wK-xf-HzT"/>
                     </connections>

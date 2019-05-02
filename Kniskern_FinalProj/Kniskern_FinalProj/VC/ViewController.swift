@@ -125,7 +125,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
     private func createBox() -> SCNNode {
-        let box = SCNBox(width: 0.15, height: 0.20, length: 0.02, chamferRadius: 0.02)
+        let box = SCNBox(width: 0.15, height: 0.20, length: 0.01, chamferRadius: 0.02)
         let material = SCNMaterial()
         material.diffuse.contents = myArt.shared.myImage//yourArt
         box.materials = [material]
